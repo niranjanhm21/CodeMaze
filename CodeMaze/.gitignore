@@ -1,0 +1,29 @@
+# =========================
+# CodeMaze Git Ignore File
+# =========================
+
+# Visual Studio
+.vs/
+
+# CMake generated files
+out/
+build/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+
+# Compiled binaries and build artifacts
+*.exe
+*.dll
+*.lib
+*.obj
+*.pdb
+*.ilk
+
+# Visual Studio / user-specific files
+*.user
+*.suo
+
+# Operating system files
+.DS_Store
+Thumbs.db
