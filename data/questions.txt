@@ -1,0 +1,212 @@
+# type|topic|difficulty|question|optionA|optionB|optionC|optionD|answer|hint
+
+MCQ|Variables|Easy|Which keyword declares a read-only variable in C++?|const|readonly|fixed|immutable|A|Use the C++ keyword for values that cannot be changed.
+MCQ|Variables|Easy|Which is a valid C++ variable name?|studentCount|2students|student-count|class|A|Identifiers cannot start with a digit or contain a hyphen.
+MCQ|Variables|Easy|What is the value of int x = 7; after x = 12;?|12|7|0|19|A|The second assignment replaces the old value.
+MCQ|Variables|Medium|Which declaration initializes a variable to zero?|int count = 0;|int count == 0;|int count( );|zero int count;|A|Use assignment during declaration.
+MCQ|Variables|Medium|What does the scope of a local variable normally mean?|The region where it can be accessed|Its memory size|Its data type|Its lifetime in the whole program|A|Scope describes where a name is visible.
+MCQ|Variables|Medium|What is the purpose of a variable?|To store a value that can be used by a program|To compile a header|To create a comment|To terminate a loop|A|Variables provide named storage.
+MCQ|Variables|Hard|What happens when an int variable is assigned a decimal value such as 3.8?|The fractional part is discarded|The int becomes a double|The program always crashes|The value becomes a string|A|Converting to int removes the fractional part.
+MCQ|Variables|Hard|Which declaration lets the compiler infer the variable type?|auto value = 10;|infer value = 10;|var value = 10;|dynamic value = 10;|A|C++ uses auto for type deduction.
+MCQ|Variables|Medium|Which operator increases a variable by one?|++|--|+=|**|A|The increment operator adds one.
+MCQ|Variables|Easy|Which type is appropriate for storing a whole-number count?|int|char|bool|void|A|Counts are commonly represented by integers.
+MCQ|DataTypes|Easy|Which type stores a single character?|char|string|int|bool|A|Think about the C++ character type.
+MCQ|DataTypes|Easy|Which type stores true or false?|bool|char|float|void|A|Boolean values have two logical states.
+MCQ|DataTypes|Easy|Which type represents no return value?|void|empty|null|none|A|Functions can use this return type when they return nothing.
+MCQ|DataTypes|Medium|Which type usually provides more precision than float?|double|char|bool|short|A|Double precision is greater than single precision.
+MCQ|DataTypes|Medium|Which type is commonly used for a small whole number?|short|decimal|text|bool|A|short is an integer type with smaller typical range than int.
+MCQ|DataTypes|Medium|What does sizeof(int) return?|The size of int in bytes|The maximum int value|The number of int variables|The address of an int|A|sizeof reports the storage size.
+MCQ|DataTypes|Hard|Which type is unsigned?|unsigned int|signed float|decimal int|positive double|A|The unsigned modifier applies to integral types.
+MCQ|DataTypes|Hard|What does type casting do?|Converts a value from one type to another|Deletes a variable|Creates a loop|Loads a library|A|Casting changes how a value is treated as a type.
+MCQ|DataTypes|Medium|Which type is suitable for a value such as 3.14?|double|char|bool|void|A|Floating-point types represent decimal values.
+MCQ|DataTypes|Easy|Which type stores a whole number such as 42?|int|float|char|bool|A|int is the standard whole-number type.
+MCQ|Operators|Easy|Which operator checks whether two values are equal?|==|=|!=|<=|A|It compares values for equality.
+MCQ|Operators|Easy|Which operator means logical AND?|&&|&|logical OR|!|A|Both conditions must be true.
+MCQ|Operators|Easy|Which operator means logical OR?|logical OR|&&|!|&|A|At least one condition must be true.
+MCQ|Operators|Easy|Which operator reverses a Boolean condition?|!|~|&|^|A|The logical NOT operator reverses true and false.
+MCQ|Operators|Medium|What is the result of 17 % 5?|2|3|5|12|A|Modulo gives the remainder.
+MCQ|Operators|Medium|What is the result of 4 + 3 * 2?|10|14|8|24|A|Multiplication has higher precedence than addition.
+MCQ|Operators|Medium|Which operator adds a value to a variable and assigns the result?|+=|==|=>|++|A|Compound assignment uses +=.
+MCQ|Operators|Medium|Which operator performs integer division?|/|%|//|div|A|The division operator performs division; integer operands produce an integer result.
+MCQ|Operators|Hard|Which operator has higher precedence in 2 + 3 * 4?|*|+|=|==|A|Multiplication is evaluated before addition.
+MCQ|Operators|Hard|What is the result of 8 & 3 using bitwise AND?|0|1|2|3|B|8 is 1000 and 3 is 0011 in binary.
+MCQ|Conditions|Easy|Which statement executes code when a condition is true?|if|for|switch|class|A|if is used for conditional execution.
+MCQ|Conditions|Easy|Which keyword provides the alternative branch of an if statement?|else|otherwise|default|next|A|else runs when the if condition is false.
+MCQ|Conditions|Medium|Which operator means less than?|<|>|<=|:<|A|It checks whether the left value is smaller.
+MCQ|Conditions|Medium|Which operator means greater than or equal to?|>=|=>|=<|==|A|The operator combines greater-than with equality.
+MCQ|Conditions|Medium|Which statement can select among several constant cases?|switch|repeat|choose|matchloop|A|switch works with case labels.
+MCQ|Conditions|Easy|Which label handles unmatched switch cases?|default|elsecase|otherwise|fallback|A|default is used when no case matches.
+MCQ|Conditions|Hard|What is a nested if statement?|An if statement inside another if|An if without a condition|A loop inside a class|A switch without cases|A|Nesting means placing one control statement inside another.
+MCQ|Conditions|Medium|What does if (x != 0) test?|Whether x is not zero|Whether x equals zero|Whether x is negative|Whether x is positive|A|!= means not equal.
+MCQ|Conditions|Hard|Which expression checks that x is between 1 and 10 inclusive?|x >= 1 && x <= 10|x > 1 && x < 10|x >= 1 logical OR x <= 10|x == 1 && x == 10|A|Inclusive bounds require >= and <=.
+MCQ|Conditions|Medium|What is the purpose of a condition?|To decide whether code should execute|To declare a class|To allocate memory|To include a header|A|Conditions control program flow.
+MCQ|Loops|Easy|Which loop is commonly used when the iteration count is known?|for|if|switch|class|A|for contains initialization, condition and update.
+MCQ|Loops|Easy|Which loop checks its condition before each iteration?|while|do-while only|switch|class|A|while is a pre-test loop.
+MCQ|Loops|Easy|Which loop executes its body at least once?|do-while|while|for|range-if|A|The condition is checked after the body.
+MCQ|Loops|Easy|Which keyword exits the nearest loop?|break|continue|exitloop|stop|A|break terminates the current loop.
+MCQ|Loops|Easy|Which keyword skips to the next iteration?|continue|break|skiploop|nextloop|A|continue skips the remaining body.
+MCQ|Loops|Medium|What does for(int i=0; i<5; ++i) execute?|5 iterations|4 iterations|6 iterations|Infinite iterations|A|i takes values 0 through 4.
+MCQ|Loops|Medium|What is an infinite loop?|A loop whose condition never becomes false|A loop with one iteration|A loop without variables|A loop inside a function|A|It keeps executing because its termination condition is not reached.
+MCQ|Loops|Medium|Which part of a for loop changes the loop variable?|Iteration expression|Initialization only|Condition only|Return statement|A|The third section usually updates the counter.
+MCQ|Loops|Hard|How many times does for(int i=1;i<=3;i++) run?|3|2|4|1|A|The values are 1, 2 and 3.
+MCQ|Loops|Hard|What happens if a while condition is initially false?|The loop body is skipped|The body runs once|The program always crashes|The condition becomes true automatically|A|while checks the condition before entering.
+MCQ|Functions|Easy|Which keyword returns a value from a function?|return|send|give|yield|A|return sends a result back to the caller.
+MCQ|Functions|Easy|What is a function?|A reusable block of code|A variable only|A data type only|A compiler option|A|Functions group reusable operations.
+MCQ|Functions|Medium|What is a function parameter?|A variable listed in a function definition|A returned value|A class object|A loop keyword|A|Parameters receive input values.
+MCQ|Functions|Medium|What is an argument?|A value passed to a function|A function's return type|A header file|A class name|A|Arguments are supplied when calling a function.
+MCQ|Functions|Medium|What does a void function return?|No value|An integer|A Boolean only|A string only|A|void indicates no return value.
+MCQ|Functions|Easy|Which syntax calls a function named add?|add();|call add;|function add;|run.add;|A|A function call uses its name followed by parentheses.
+MCQ|Functions|Hard|What is function overloading?|Multiple functions with the same name but different parameter lists|Calling a function twice|A function returning two values|A function inside a loop|A|Overloads differ in their parameter signatures.
+MCQ|Functions|Medium|What is a default argument?|A value used when an argument is omitted|A required return value|A compiler error|A local variable|A|Default arguments provide fallback parameter values.
+MCQ|Functions|Hard|What is pass-by-reference useful for?|Allowing a function to work with the original object|Always creating a copy|Preventing all changes|Deleting the argument|A|A reference parameter can modify the original object.
+MCQ|Functions|Medium|Why use functions in a program?|To improve reuse and organization|To remove all variables|To avoid compilation|To replace every class|A|Functions help structure and reuse code.
+MCQ|Arrays|Easy|What is the first index of a normal C++ array?|0|1|-1|Depends on compiler|A|C++ arrays use zero-based indexing.
+MCQ|Arrays|Easy|If int a[5] exists, what is the last valid index?|4|5|3|6|A|Five elements have indexes 0 through 4.
+MCQ|Arrays|Medium|How many elements does int values[8] contain?|8|7|9|16|A|The number in brackets specifies the element count.
+MCQ|Arrays|Medium|Which syntax initializes an array with three values?|int a[3] = {1,2,3};|int a = [1,2,3];|array a(1,2,3);|int[3] a = 1,2,3;|A|Array initialization uses braces.
+MCQ|Arrays|Medium|What does a[0] refer to?|The first element|The second element|The last element|The array size|A|Index zero is the first element.
+MCQ|Arrays|Easy|Can a normal fixed-size C++ array change its size after declaration?|No|Yes, automatically|Only with ++|Only with cout|A|Its size is fixed after declaration.
+MCQ|Arrays|Hard|What can happen when an array index is outside its valid range?|Undefined behavior|Automatic resizing|A guaranteed zero|A compiler-generated element|A|Built-in arrays do not perform bounds checking.
+MCQ|Arrays|Medium|What is the purpose of a loop with an array?|To process multiple elements efficiently|To change the array type|To compile the array|To create a namespace|A|Loops are commonly used to traverse arrays.
+MCQ|Arrays|Hard|For int a[4]={2,4,6,8}, what is a[2]?|6|4|8|2|A|Index 2 refers to the third element.
+MCQ|Arrays|Medium|Which expression gives the number of elements in a built-in array in the same scope?|sizeof(a)/sizeof(a[0])|length(a)|a.size()|count(a)|A|The total byte size divided by one element's size gives the count.
+MCQ|Strings|Easy|Which standard class represents text in modern C++?|std::string|std::text|StringType|Text|A|The standard library provides std::string.
+MCQ|Strings|Easy|Which header is commonly used for std::string?|<string>|<text>|<cstringpp>|<characters>|A|The standard string class is declared in the string header.
+MCQ|Strings|Easy|Which method returns the length of a std::string?|size()|lengthOf()|count()|chars()|A|std::string provides size(), also length().
+MCQ|Strings|Medium|Which expression accesses the first character of string s?|s[0]|s[1]|s.first()|s.char(0)|A|String indexing starts at zero.
+MCQ|Strings|Medium|Which operator concatenates two std::string objects?|+|&|::|%|A|The plus operator joins strings.
+MCQ|Strings|Medium|What does s.empty() check?|Whether the string contains no characters|Whether it has spaces|Whether it is uppercase|Whether it is numeric|A|empty() reports whether the string has zero characters.
+MCQ|Strings|Hard|Which method can add text to the end of a std::string?|append()|pushText()|addEnd()|insertLast()|A|append adds characters or another string.
+MCQ|Strings|Easy|Which character type is used for a single character literal?|char|string|text|word|A|Single characters use char.
+MCQ|Strings|Medium|What does s.find("cat") return when the substring is absent?|std::string::npos|-1 always|0 always|false|A|find uses npos to indicate no match.
+MCQ|Strings|Hard|Which expression compares two std::string values for equality?|s1 == s2|s1 = s2|compare s1 s2|s1 equals s2|A|The equality operator compares string contents.
+MCQ|Pointers|Easy|What does a pointer store?|A memory address|Only a character|A loop count|A class definition|A|A pointer contains an address.
+MCQ|Pointers|Medium|Which operator gets the address of a variable?|&|*|->|%|A|The address-of operator is &.
+MCQ|Pointers|Medium|Which operator dereferences a pointer?|*|&|->|::|A|Dereferencing accesses the pointed-to value.
+MCQ|Pointers|Easy|Which declaration creates a pointer to int?|int* p;|pointer int p;|int p*;|ptr<int> p;|A|The asterisk in the declaration indicates a pointer.
+MCQ|Pointers|Medium|What does nullptr represent?|A null pointer value|An integer zero only|A deleted object|A reference|A|nullptr safely represents no pointed-to object.
+MCQ|Pointers|Medium|If int x=5; int* p=&x;, what is *p?|5|The address of x|0|The size of x|A|Dereferencing p gives x's value.
+MCQ|Pointers|Hard|What is a dangling pointer?|A pointer referring to an object that is no longer valid|A pointer set to nullptr|A pointer to an array|A pointer to a constant|A|The target has already ceased to exist.
+MCQ|Pointers|Hard|Why should a pointer be initialized before dereferencing it?|To ensure it points to a valid object|To make it a reference|To increase its size|To avoid using int|A|Dereferencing an invalid pointer can cause undefined behavior.
+MCQ|Pointers|Medium|Which operator accesses a member through an object pointer?|->|.|::|&|A|The arrow operator accesses members through pointers.
+MCQ|Pointers|Hard|What is a pointer to pointer?|A pointer that stores the address of another pointer|A pointer with two values|A reference to a class|A double variable|A|For example, int** can point to an int pointer.
+MCQ|OOP|Easy|Which keyword defines a class?|class|object|define|record|A|class introduces a class definition.
+MCQ|OOP|Easy|What is an object?|An instance of a class|A header file|A function parameter|A compiler|A|Objects are created from class definitions.
+MCQ|OOP|Medium|Which OOP principle bundles data and methods together?|Encapsulation|Recursion|Iteration|Compilation|A|Encapsulation combines data and related behavior.
+MCQ|OOP|Medium|Which OOP principle focuses on exposing essential features while hiding details?|Abstraction|Sorting|Iteration|Linking|A|Abstraction hides unnecessary implementation details.
+MCQ|OOP|Medium|Which OOP feature allows a derived class to reuse a base class?|Inheritance|Overloading|Casting|Parsing|A|Inheritance establishes a base-derived relationship.
+MCQ|OOP|Hard|Which OOP principle allows one interface to represent different behaviors?|Polymorphism|Compilation|Iteration|Tokenization|A|Polymorphism supports different implementations through common interfaces.
+MCQ|OOP|Medium|What is a private data member primarily used for?|Restricting direct access from outside the class|Making it global|Making it constant automatically|Making it static automatically|A|private controls access to class members.
+MCQ|OOP|Easy|Which access specifier allows members to be accessed from outside the class?|public|private|hidden|internal|A|public members are accessible according to normal object access rules.
+MCQ|OOP|Hard|What is a class method?|A function defined as a member of a class|A global variable|A header file|A namespace alias|A|Member functions operate as part of a class.
+MCQ|OOP|Medium|Why are constructors useful?|They initialize objects when they are created|They delete classes|They start loops|They compile headers|A|Constructors establish an object's initial state.
+MCQ|Inheritance|Easy|What is the class being inherited from called?|Base class|Derived class|Child object|Main class|A|The parent in an inheritance relationship is the base class.
+MCQ|Inheritance|Easy|What is the class that inherits another class called?|Derived class|Base class|Parent object|Root function|A|The inheriting class is derived.
+MCQ|Inheritance|Medium|Which syntax represents public inheritance?|class Dog : public Animal|class Dog -> Animal|class Dog inherits Animal|class Dog = Animal|A|A colon followed by an access specifier is used.
+MCQ|Inheritance|Medium|Can a derived class add its own members?|Yes|No|Only variables|Only constructors|A|Derived classes can introduce additional members.
+MCQ|Inheritance|Hard|What is hierarchical inheritance?|Multiple derived classes inherit from one base class|One class inherits many bases only|A class inherits itself|Objects inherit variables|A|A single base has multiple derived classes.
+MCQ|Inheritance|Hard|What is multilevel inheritance?|An inheritance chain across multiple levels|Many bases for one class|One object with many methods|A loop of classes|A|For example, A -> B -> C forms multiple levels.
+MCQ|Inheritance|Medium|Which access mode can be specified for inheritance?|public|visible|open|external|A|C++ supports public, protected and private inheritance.
+MCQ|Inheritance|Hard|What is the purpose of protected members?|They are accessible in the class and derived classes|They are accessible everywhere|They cannot be accessed by derived classes|They are automatically static|A|protected provides controlled access for derived classes.
+MCQ|Inheritance|Medium|What does a derived object contain conceptually?|Its derived part and an inherited base part|Only base data|Only derived methods|Only static members|A|A derived object includes the base-class subobject.
+MCQ|Inheritance|Hard|What is method overriding?|A derived class provides a new implementation of a base virtual function|Changing a variable name|Calling a method twice|Creating a namespace|A|Overriding changes inherited virtual behavior.
+MCQ|STL|Easy|Which STL container follows LIFO?|stack|queue|vector|map|A|Last in, first out.
+MCQ|STL|Easy|Which STL container follows FIFO?|queue|stack|set|map|A|First in, first out.
+MCQ|STL|Easy|Which STL container behaves like a resizable array?|vector|stack|map|queue|A|vector stores a dynamic sequence.
+MCQ|STL|Medium|Which container stores unique sorted keys?|set|vector|queue|stack|A|set keeps unique keys in sorted order.
+MCQ|STL|Medium|Which container stores key-value pairs with ordered keys?|map|vector|set|stack|A|map stores key-value associations with ordered keys.
+MCQ|STL|Medium|Which container allows duplicate keys in an ordered associative structure?|multimap|map|set|vector|A|multimap permits multiple values for the same key.
+MCQ|STL|Easy|Which header provides std::vector?|<vector>|<arraylist>|<sequence>|<dynamic>|A|The vector container is declared in <vector>.
+MCQ|STL|Medium|Which method adds an element to the end of a vector?|push_back()|add_end()|append_item()|insert_last()|A|push_back adds to the vector's end.
+MCQ|STL|Medium|Which method returns the number of elements in a vector?|size()|length()|countAll()|capacityOnly()|A|size returns the current element count.
+MCQ|STL|Hard|What does vector::capacity() represent?|The storage capacity before another allocation may be needed|The number of valid elements always|The maximum integer|The vector's byte size only|A|Capacity is allocated storage, which can exceed size.
+MCQ|Recursion|Easy|What is recursion?|A function calling itself|A class calling a constructor|A loop keyword|A pointer operation|A|A recursive function calls itself directly or indirectly.
+MCQ|Recursion|Easy|What usually stops recursion?|Base case|Header file|Pointer|Namespace|A|The base case terminates recursive calls.
+MCQ|Recursion|Medium|What happens if a recursive function has no reachable base case?|It may continue until stack overflow|It automatically stops|It becomes a loop object|It always returns zero|A|Unbounded recursion can exhaust the call stack.
+MCQ|Recursion|Medium|Which problem is naturally expressed recursively?|Tree traversal|Variable declaration|Header inclusion|Console color selection|A|Trees have recursive substructures.
+MCQ|Recursion|Easy|What is the factorial of 4?|24|12|16|8|A|4 multiplied by 3, 2 and 1 equals 24.
+MCQ|Recursion|Medium|Which recursive definition matches factorial?|fact(n)=n*fact(n-1) with fact(0)=1|fact(n)=n+fact(n)|fact(n)=fact(n+1)|fact(n)=n/0|A|The factorial recurrence reduces n toward zero.
+MCQ|Recursion|Hard|What is tail recursion?|A recursive call is the final operation of the function|Recursion inside a loop only|A function with two base cases|Calling a non-recursive function|A|Nothing remains to do after the recursive call.
+MCQ|Recursion|Medium|What is the call stack used for during recursion?|Storing information for active function calls|Sorting arrays|Storing only global variables|Loading libraries|A|Each active call has stack-frame information.
+MCQ|Recursion|Hard|Why can recursion use significant memory?|Each active call can require a stack frame|It always allocates heap arrays|It creates a new executable|It duplicates the source file|A|Nested calls accumulate stack frames.
+MCQ|Recursion|Medium|Which strategy often converts recursion into iteration?|Using an explicit loop or stack|Using more classes|Removing all variables|Adding headers|A|Loops or explicit stacks can simulate recursive control flow.
+MCQ|Searching|Easy|Which search checks elements sequentially?|Linear search|Binary search|Heap sort|DFS|A|Linear search checks items one after another.
+MCQ|Searching|Medium|What requirement does standard binary search have?|Sorted data|A graph|A queue only|An unsorted list|A|Binary search relies on ordered data.
+MCQ|Searching|Medium|What is the typical time complexity of linear search?|O(n)|O(log n)|O(1) always|O(n log n)|A|In the worst case, every element may be checked.
+MCQ|Searching|Medium|What is the typical time complexity of binary search?|O(log n)|O(n)|O(n²)|O(2n)|A|The search range is halved each step.
+MCQ|Searching|Hard|What does binary search do after comparing with the middle element?|Discards the half that cannot contain the target|Always scans from the beginning|Sorts the entire array|Adds a new element|A|Ordering lets it eliminate half the range.
+MCQ|Searching|Easy|What is a target in a search algorithm?|The value being searched for|The array size|The loop variable|The sorting method|A|The target is the desired value.
+MCQ|Sorting|Easy|Which sorting algorithm repeatedly swaps adjacent out-of-order elements?|Bubble sort|Binary search|DFS|BFS|A|Bubble sort compares neighboring elements.
+MCQ|Sorting|Easy|Which sorting algorithm selects a minimum element for each position?|Selection sort|Quick sort|BFS|Binary search|A|Selection sort repeatedly selects the next minimum.
+MCQ|Sorting|Medium|Which sorting algorithm inserts each element into its proper position in a growing sorted portion?|Insertion sort|Bubble search|DFS sort|Map sort|A|Insertion sort builds a sorted prefix.
+MCQ|Sorting|Medium|Which sorting algorithm uses a pivot?|Quick sort|Selection sort|Linear search|BFS|A|Quick sort partitions around a pivot.
+MCQ|Sorting|Hard|What is the typical average time complexity of quicksort?|O(n log n)|O(n²) always|O(log n)|O(1)|A|Good pivots give roughly balanced partitions on average.
+MCQ|Sorting|Medium|What is the typical worst-case time complexity of bubble sort?|O(n²)|O(log n)|O(n) always|O(1)|A|Nested comparisons can lead to quadratic work.
+MCQ|Sorting|Medium|Why is sorting useful before binary search?|It provides the ordering binary search requires|It reduces memory to zero|It removes all duplicates automatically|It converts values to strings|A|Binary search depends on sorted order.
+MCQ|Algorithms|Easy|What is an algorithm?|A finite sequence of steps for solving a problem|A programming language|A compiler error|A variable type|A|Algorithms describe problem-solving procedures.
+MCQ|Algorithms|Medium|Which algorithmic technique divides a problem into smaller independent parts and combines results?|Divide and conquer|Random guessing|Linear scanning|Brute deletion|A|Divide and conquer breaks problems into subproblems.
+MCQ|Algorithms|Medium|Which approach tries all possible choices systematically?|Brute force|Inheritance|Encapsulation|Compilation|A|Brute force explores possibilities without a specialized shortcut.
+MCQ|Algorithms|Hard|What does greedy strategy do?|Makes the best local choice at each step|Always explores every solution|Uses recursion only|Avoids all decisions|A|Greedy methods choose locally promising options.
+MCQ|Algorithms|Medium|What is an algorithm's input?|Data supplied to the algorithm|The final result only|The source-code file|The compiler version|A|Input is the information processed.
+MCQ|Algorithms|Easy|What is an algorithm's output?|The result produced after processing|The source code|The input data unchanged|A comment|A|Output is the produced result.
+MCQ|Algorithms|Hard|Why analyze algorithm complexity?|To estimate how resource usage grows with input size|To choose variable names|To format comments|To install a compiler|A|Complexity helps compare scalability.
+MCQ|Graphs|Easy|Which traversal uses a queue?|BFS|DFS|Quick sort|Binary search|A|Breadth-first search uses a queue.
+MCQ|Graphs|Easy|Which traversal commonly uses a stack or recursion?|DFS|BFS|Bubble sort|Linear search|A|Depth-first search follows one path deeply.
+MCQ|Graphs|Medium|What does BFS stand for?|Breadth-First Search|Binary File Search|Base Function Scan|Balanced Forward Sort|A|BFS means Breadth-First Search.
+MCQ|Graphs|Medium|What does DFS stand for?|Depth-First Search|Data File Sort|Direct Function Search|Dynamic Forward Scan|A|DFS means Depth-First Search.
+MCQ|Graphs|Medium|Which traversal is useful for shortest paths in an unweighted graph?|BFS|DFS|Quick sort|Selection sort|A|BFS explores vertices by distance in an unweighted graph.
+MCQ|Graphs|Easy|What is a vertex?|A node in a graph|A graph edge|A sorting step|A queue element only|A|Vertices are the nodes of a graph.
+MCQ|Graphs|Easy|What is an edge?|A connection between vertices|A vertex value|A stack frame|A search target|A|Edges connect graph vertices.
+MCQ|Graphs|Medium|What is a directed graph?|A graph whose edges have directions|A graph with no vertices|A graph that cannot be searched|A graph containing only trees|A|Directed edges have a source and destination.
+MCQ|Graphs|Hard|What is a cycle in a graph?|A path that returns to a previously visited vertex|A graph with no edges|A single vertex|A sorted list|A|A cycle forms a closed route.
+MCQ|Graphs|Medium|What is an adjacency list?|A representation storing neighboring vertices for each vertex|A sorted array only|A stack of edges|A compiler table|A|It records graph neighbors efficiently.
+MCQ|Debugging|Medium|What is wrong with int *p; *p=10;?|The pointer is uninitialized|The integer is constant|The loop is missing|There is no issue|A|p does not point to a valid object.
+MCQ|Debugging|Hard|What is wrong with accessing arr[5] when int arr[5] exists?|Out-of-bounds access|A syntax error|A valid last index|A constructor error|A|Valid indexes are 0 through 4.
+MCQ|Debugging|Medium|What is a likely issue when a non-void function reaches the end without returning a value?|Missing return|Missing namespace|Missing class|Extra include|A|A non-void function should return an appropriate value.
+MCQ|Debugging|Medium|What is wrong if a constructor has a different name from its class?|Constructor name mismatch|Pointer mismatch|Loop mismatch|No issue|A|A constructor name must match its class name.
+MCQ|Debugging|Easy|What kind of error is caused by using an undeclared variable?|Compilation error|Sorting error|Runtime timeout only|Network error|A|The compiler cannot resolve an undeclared identifier.
+MCQ|Debugging|Medium|What can happen when dividing an integer by zero?|Undefined behavior|The result is always zero|The result is always one|Automatic floating-point conversion|A|Integer division by zero is undefined behavior.
+MCQ|Debugging|Medium|What is a memory leak?|Allocated memory that is no longer reachable or released|A syntax error|A slow loop only|A missing semicolon|A|Leaked memory remains allocated without being usable.
+MCQ|Debugging|Hard|What is a segmentation fault commonly associated with?|Invalid memory access|Correct variable declaration|Successful compilation|A valid loop|A|Invalid memory access can trigger a segmentation fault.
+MCQ|Debugging|Medium|What is the purpose of a debugger breakpoint?|To pause execution at a chosen location|To delete code|To speed up compilation|To rename variables automatically|A|Breakpoints pause the program for inspection.
+MCQ|Debugging|Easy|Why should compiler warnings be examined?|They can reveal potential bugs or questionable code|They always prevent compilation|They replace testing|They remove errors automatically|A|Warnings can point to problems before runtime.
+MCQ|Output|Easy|What is printed by cout << 5 + 3;?|8|2|15|53|A|The arithmetic expression is evaluated before printing.
+MCQ|Output|Easy|What is printed by int x=4; cout<<x+2;?|6|42|2|8|A|4 plus 2 equals 6.
+MCQ|Output|Medium|What is printed by int x=3; cout<<x*x;?|9|6|12|33|A|The value is multiplied by itself.
+MCQ|Output|Easy|What is printed by cout << 10 % 4;?|2|4|6|0|A|Modulo returns the remainder.
+MCQ|Output|Medium|What is printed by int a=2,b=5; cout<<(a+b);?|7|10|3|25|A|2 plus 5 equals 7.
+MCQ|Output|Medium|What is printed by for(int i=1;i<=3;i++) cout<<i;?|123|012|321|111|A|The loop prints 1, 2 and 3.
+MCQ|Output|Hard|What is printed by int x=5; if(x>3) cout<<"Yes"; else cout<<"No";?|Yes|No|5|Nothing|A|5 is greater than 3.
+MCQ|Output|Medium|What is printed by int x=2; while(x<5){cout<<x;x++;}?|234|123|345|222|A|Trace x after each iteration.
+MCQ|Output|Easy|What is printed by int a[3]={7,8,9}; cout<<a[2];?|9|8|7|2|A|Index 2 refers to the third element.
+MCQ|Output|Hard|What is printed by int x=1; for(int i=0;i<3;i++) x*=2; cout<<x;?|8|6|4|3|A|x doubles three times: 1 to 2 to 4 to 8.
+MCQ|CodeCompletion|Easy|Which expression completes int add(int a,int b){ return ____; }?|a+b|a-b|a*b|a/b|A|The function is named add.
+MCQ|CodeCompletion|Easy|Which condition completes for(int i=0; i ____ 5; i++)?|<|>|==|!=|A|The loop should run while i is below 5.
+MCQ|CodeCompletion|Medium|Which expression accesses the value pointed to by p?|*p|&p|p&|p*|A|Use the dereference operator.
+MCQ|CodeCompletion|Easy|Which declaration creates an array of five integers?|int arr[5];|int arr(5);|array int[5];|int[5] arr;|A|Built-in array size uses square brackets.
+MCQ|CodeCompletion|Medium|Which statement adds an element to vector v?|v.push_back(10);|v.add(10);|v.appendEnd(10);|v.insertLast(10);|A|vector provides push_back.
+MCQ|CodeCompletion|Medium|Which statement reads an integer into x?|cin >> x;|cin << x;|input(x);|read << x;|A|The extraction operator reads from cin.
+MCQ|CodeCompletion|Easy|Which statement prints variable x?|cout << x;|cout >> x;|print << x;|display(x);|A|cout uses the insertion operator.
+MCQ|CodeCompletion|Medium|Which expression checks whether x is zero?|x == 0|x = 0|x := 0|x equals 0|A|Equality comparison uses ==.
+MCQ|CodeCompletion|Hard|Which declaration creates a reference to x?|int& ref = x;|int* ref = x;|reference int ref = x;|int ref& = x;|A|A reference declaration uses & with the type.
+MCQ|CodeCompletion|Hard|Which syntax declares a virtual function returning int?|virtual int show();|int virtual show;|virtual show int();|int show virtual();|A|virtual appears before the return type in this declaration.
+MCQ|DataStructure|Easy|Which data structure follows LIFO?|Stack|Queue|Graph|Tree|A|The last inserted item is removed first.
+MCQ|DataStructure|Easy|Which data structure follows FIFO?|Queue|Stack|Tree|Set|A|The first inserted item is removed first.
+MCQ|DataStructure|Medium|Which data structure is made of nodes connected by links?|Linked list|Array only|Integer|Loop|A|Linked lists connect nodes using links.
+MCQ|DataStructure|Medium|Which data structure represents hierarchical parent-child relationships?|Tree|Queue|Stack|Hash value|A|Trees organize nodes hierarchically.
+MCQ|DataStructure|Easy|Which structure represents vertices and edges?|Graph|Stack|Array|String|A|Graphs consist of vertices connected by edges.
+MCQ|DataStructure|Medium|What is the main advantage of a linked list over a fixed array?|Easy insertion and deletion when a node position is known|Always faster random access|Uses no memory|Never needs pointers|A|Linked lists can modify links without shifting an entire array.
+MCQ|DataStructure|Medium|Which data structure supports efficient access by index?|Array|Stack only|Queue only|Tree only|A|Arrays provide direct indexed access.
+MCQ|DataStructure|Hard|Which structure is commonly used to implement BFS?|Queue|Stack|Set only|Heap only|A|BFS processes vertices in first-in-first-out order.
+MCQ|DataStructure|Hard|Which structure is commonly used to implement DFS iteratively?|Stack|Queue|Vector only|Map only|A|DFS can use an explicit stack.
+MCQ|DataStructure|Medium|What is a leaf node in a tree?|A node with no children|The root node always|A node with two parents|A graph edge|A|Leaf nodes have no child nodes.
+MCQ|Complexity|Easy|What does O(n) describe?|Linear growth|Constant growth|Quadratic growth|Logarithmic growth|A|Work grows roughly in proportion to n.
+MCQ|Complexity|Easy|What does O(1) mean?|Constant time|Linear time|Quadratic time|Exponential time|A|The operation does not grow with input size in the model.
+MCQ|Complexity|Medium|Which is generally faster for large n: O(log n) or O(n)?|O(log n)|O(n)|They are always equal|Neither can be compared|A|Logarithmic growth is slower than linear growth.
+MCQ|Complexity|Medium|What is the typical complexity of a loop that visits every element once?|O(n)|O(1)|O(log n)|O(n²)|A|One pass over n elements is linear.
+MCQ|Complexity|Medium|What is the typical complexity of two nested loops each running n times?|O(n²)|O(n)|O(log n)|O(1)|A|n multiplied by n gives n squared.
+MCQ|Complexity|Hard|Which notation describes an upper bound on growth?|Big O|Big C|Big S|Big T only|A|Big O is commonly used for asymptotic upper bounds.
+MCQ|Complexity|Medium|What is the space complexity of storing n integers in an array?|O(n)|O(1)|O(log n)|O(n²)|A|Storage grows linearly with the number of elements.
+MCQ|Complexity|Hard|Why is O(n log n) often associated with efficient comparison sorting?|Many practical comparison sorts achieve this average or worst-case class|It means one operation only|It means no comparisons|It always means constant memory|A|Merge sort and average quicksort are common examples.
+MCQ|Complexity|Medium|Which grows faster as n increases?|O(n²)|O(n)|O(log n)|O(1)|A|Quadratic growth eventually exceeds linear and logarithmic growth.
+MCQ|Complexity|Hard|What does asymptotic analysis focus on?|How resource usage grows as input size becomes large|Exact CPU temperature|Variable names|Screen resolution|A|It studies growth trends rather than machine-specific constants.
