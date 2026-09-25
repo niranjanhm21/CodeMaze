@@ -1,7 +1,21 @@
 #include "Question.h"
 
+#include <algorithm>
 #include <cctype>
+#include <random>
 #include <utility>
+
+namespace
+{
+    std::mt19937& getQuestionRandomEngine()
+    {
+        static std::mt19937 engine(
+            std::random_device{}()
+        );
+
+        return engine;
+    }
+}
 
 // --------------------------------------------------
 // Question
@@ -211,6 +225,64 @@ MCQQuestion::MCQQuestion(
     ),
     options(std::move(options))
 {
+    // --------------------------------------------------
+    // IMPORTANT
+    // --------------------------------------------------
+    // The question data may store the correct answer
+    // as A, B, C or D.
+    //
+    // Convert that letter to the ORIGINAL option text
+    // BEFORE shuffling the options.
+    //
+    // This guarantees that the correct answer remains
+    // correct even after the options are shuffled.
+    // --------------------------------------------------
+
+    std::string normalizedAnswer =
+        normalize(this->correctAnswer);
+
+    if (normalizedAnswer == "a")
+    {
+        if (options.size() >= 1)
+        {
+            this->correctAnswer =
+                options[0];
+        }
+    }
+    else if (normalizedAnswer == "b")
+    {
+        if (options.size() >= 2)
+        {
+            this->correctAnswer =
+                options[1];
+        }
+    }
+    else if (normalizedAnswer == "c")
+    {
+        if (options.size() >= 3)
+        {
+            this->correctAnswer =
+                options[2];
+        }
+    }
+    else if (normalizedAnswer == "d")
+    {
+        if (options.size() >= 4)
+        {
+            this->correctAnswer =
+                options[3];
+        }
+    }
+
+    // --------------------------------------------------
+    // Shuffle the displayed options
+    // --------------------------------------------------
+
+    std::shuffle(
+        this->options.begin(),
+        this->options.end(),
+        getQuestionRandomEngine()
+    );
 }
 
 bool MCQQuestion::isCorrect(

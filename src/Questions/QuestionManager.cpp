@@ -57,7 +57,8 @@ bool QuestionManager::loadFromFile(
                 continue;
             }
 
-            auto question = createQuestion(fields);
+            auto question =
+                createQuestion(fields);
 
             if (question)
             {
@@ -87,21 +88,26 @@ QuestionManager::getRandomQuestion()
 
     for (const auto& question : questions)
     {
-        candidates.push_back(question.get());
+        candidates.push_back(
+            question.get()
+        );
     }
 
     const Question* selected =
-        chooseRandomFromList(candidates);
+        chooseRandomFromList(
+            candidates
+        );
 
     if (selected != nullptr)
     {
         return selected;
     }
 
-    // All questions have been used.
     resetQuestionHistory();
 
-    return chooseRandomFromList(candidates);
+    return chooseRandomFromList(
+        candidates
+    );
 }
 
 const Question*
@@ -114,11 +120,15 @@ QuestionManager::getRandomQuestion(
         return nullptr;
     }
 
-    std::vector<const Question*> topicQuestions;
+    std::vector<const Question*>
+        topicQuestions;
 
     for (const auto& question : questions)
     {
-        if (question->getTopic() == topic)
+        if (
+            question->getTopic() ==
+            topic
+            )
         {
             topicQuestions.push_back(
                 question.get()
@@ -132,25 +142,25 @@ QuestionManager::getRandomQuestion(
     }
 
     const Question* selected =
-        chooseRandomFromList(topicQuestions);
+        chooseRandomFromList(
+            topicQuestions
+        );
 
     if (selected != nullptr)
     {
         return selected;
     }
 
-    // The requested topic is exhausted while
-    // other questions are still unused.
     if (!allQuestionsUsed())
     {
         return getRandomQuestionWithoutReset();
     }
 
-    // The complete question bank is exhausted.
-    // Start a new cycle and keep the requested topic.
     resetQuestionHistory();
 
-    return chooseRandomFromList(topicQuestions);
+    return chooseRandomFromList(
+        topicQuestions
+    );
 }
 
 const Question*
@@ -166,15 +176,22 @@ QuestionManager::getAdaptiveQuestion(
     AdaptiveEngine adaptiveEngine;
 
     const std::string preferredTopic =
-        adaptiveEngine.chooseTopic(tracker);
+        adaptiveEngine.chooseTopic(
+            tracker
+        );
 
+    // --------------------------------------------------
     // Priority 1:
-    // Adaptive topic + adaptive difficulty.
+    // Adaptive topic + adaptive difficulty
+    // --------------------------------------------------
+
     if (!preferredTopic.empty())
     {
-        std::vector<const Question*> topicQuestions;
+        std::vector<const Question*>
+            topicQuestions;
 
-        for (const auto& question : questions)
+        for (const auto& question :
+            questions)
         {
             if (
                 question->getTopic() ==
@@ -189,7 +206,8 @@ QuestionManager::getAdaptiveQuestion(
 
         if (!topicQuestions.empty())
         {
-            const Difficulty preferredDifficulty =
+            const Difficulty
+                preferredDifficulty =
                 adaptiveEngine.chooseDifficulty(
                     preferredTopic,
                     tracker
@@ -198,8 +216,10 @@ QuestionManager::getAdaptiveQuestion(
             std::vector<const Question*>
                 matchingDifficulty;
 
-            for (const Question* question :
-                topicQuestions)
+            for (
+                const Question* question :
+                topicQuestions
+                )
             {
                 if (
                     question->getDifficulty() ==
@@ -222,8 +242,11 @@ QuestionManager::getAdaptiveQuestion(
                 return selected;
             }
 
+            // --------------------------------------------------
             // Priority 2:
-            // Same adaptive topic, any difficulty.
+            // Same topic, any difficulty
+            // --------------------------------------------------
+
             selected =
                 chooseRandomFromList(
                     topicQuestions
@@ -236,12 +259,11 @@ QuestionManager::getAdaptiveQuestion(
         }
     }
 
+    // --------------------------------------------------
     // Priority 3:
-    // Any unused question.
-    //
-    // This prevents a small topic/difficulty pool
-    // from causing repetition while other questions
-    // are still available.
+    // Any unused question
+    // --------------------------------------------------
+
     const Question* selected =
         getRandomQuestionWithoutReset();
 
@@ -250,17 +272,19 @@ QuestionManager::getAdaptiveQuestion(
         return selected;
     }
 
-    // Every question in the bank has now been used.
-    // Start a completely new cycle.
+    // --------------------------------------------------
+    // New question cycle
+    // --------------------------------------------------
+
     resetQuestionHistory();
 
-    // Preserve adaptive selection when the new cycle
-    // begins.
     if (!preferredTopic.empty())
     {
-        std::vector<const Question*> topicQuestions;
+        std::vector<const Question*>
+            topicQuestions;
 
-        for (const auto& question : questions)
+        for (const auto& question :
+            questions)
         {
             if (
                 question->getTopic() ==
@@ -275,7 +299,8 @@ QuestionManager::getAdaptiveQuestion(
 
         if (!topicQuestions.empty())
         {
-            const Difficulty preferredDifficulty =
+            const Difficulty
+                preferredDifficulty =
                 adaptiveEngine.chooseDifficulty(
                     preferredTopic,
                     tracker
@@ -284,8 +309,10 @@ QuestionManager::getAdaptiveQuestion(
             std::vector<const Question*>
                 matchingDifficulty;
 
-            for (const Question* question :
-                topicQuestions)
+            for (
+                const Question* question :
+                topicQuestions
+                )
             {
                 if (
                     question->getDifficulty() ==
@@ -336,9 +363,13 @@ QuestionManager::getQuestionCountForTopic(
 {
     std::size_t count = 0;
 
-    for (const auto& question : questions)
+    for (const auto& question :
+        questions)
     {
-        if (question->getTopic() == topic)
+        if (
+            question->getTopic() ==
+            topic
+            )
         {
             ++count;
         }
@@ -350,16 +381,19 @@ QuestionManager::getQuestionCountForTopic(
 std::vector<std::string>
 QuestionManager::getAvailableTopics() const
 {
-    std::vector<std::string> topics;
+    std::vector<std::string>
+        topics;
 
-    for (const auto& question : questions)
+    for (const auto& question :
+        questions)
     {
         const std::string& topic =
             question->getTopic();
 
         bool alreadyExists = false;
 
-        for (const auto& existing : topics)
+        for (const auto& existing :
+            topics)
         {
             if (existing == topic)
             {
@@ -387,7 +421,8 @@ QuestionManager::split(
     const std::string& line
 ) const
 {
-    std::vector<std::string> fields;
+    std::vector<std::string>
+        fields;
 
     std::string current;
 
@@ -395,7 +430,10 @@ QuestionManager::split(
     {
         if (character == '|')
         {
-            fields.push_back(current);
+            fields.push_back(
+                current
+            );
+
             current.clear();
         }
         else
@@ -408,6 +446,10 @@ QuestionManager::split(
 
     return fields;
 }
+
+// --------------------------------------------------
+// Create Question
+// --------------------------------------------------
 
 std::unique_ptr<Question>
 QuestionManager::createQuestion(
@@ -458,25 +500,71 @@ QuestionManager::createQuestion(
             Difficulty::Hard;
     }
 
+    // --------------------------------------------------
+    // MCQ
+    // --------------------------------------------------
+
     if (type == "MCQ")
     {
+        std::vector<std::string>
+            options =
+        {
+            optionA,
+            optionB,
+            optionC,
+            optionD
+        };
+
+        // --------------------------------------------------
+        // IMPORTANT
+        //
+        // questions.txt stores the correct answer as
+        // A, B, C or D.
+        //
+        // Convert that letter into the ORIGINAL
+        // option text before MCQQuestion shuffles
+        // the options.
+        // --------------------------------------------------
+
+        std::string correctAnswer =
+            answer;
+
+        if (answer == "A")
+        {
+            correctAnswer =
+                optionA;
+        }
+        else if (answer == "B")
+        {
+            correctAnswer =
+                optionB;
+        }
+        else if (answer == "C")
+        {
+            correctAnswer =
+                optionC;
+        }
+        else if (answer == "D")
+        {
+            correctAnswer =
+                optionD;
+        }
+
         return std::make_unique<
             MCQQuestion
         >(
             topic,
             prompt,
-            std::vector<std::string>
-        {
-            optionA,
-                optionB,
-                optionC,
-                optionD
-        },
-            answer,
+            std::move(options),
+            correctAnswer,
             hint,
             difficulty
         );
     }
+
+    // --------------------------------------------------
+    // Output
+    // --------------------------------------------------
 
     if (type == "Output")
     {
@@ -491,6 +579,10 @@ QuestionManager::createQuestion(
         );
     }
 
+    // --------------------------------------------------
+    // Debugging
+    // --------------------------------------------------
+
     if (type == "Debugging")
     {
         return std::make_unique<
@@ -503,6 +595,10 @@ QuestionManager::createQuestion(
             difficulty
         );
     }
+
+    // --------------------------------------------------
+    // Code Completion
+    // --------------------------------------------------
 
     if (type == "CodeCompletion")
     {
@@ -517,6 +613,10 @@ QuestionManager::createQuestion(
         );
     }
 
+    // --------------------------------------------------
+    // Conceptual
+    // --------------------------------------------------
+
     if (type == "Conceptual")
     {
         return std::make_unique<
@@ -530,6 +630,10 @@ QuestionManager::createQuestion(
         );
     }
 
+    // --------------------------------------------------
+    // Data Structure
+    // --------------------------------------------------
+
     if (type == "DataStructure")
     {
         return std::make_unique<
@@ -542,6 +646,10 @@ QuestionManager::createQuestion(
             difficulty
         );
     }
+
+    // --------------------------------------------------
+    // Algorithm
+    // --------------------------------------------------
 
     if (type == "Algorithm")
     {
@@ -561,19 +669,26 @@ QuestionManager::createQuestion(
 
 std::vector<const Question*>
 QuestionManager::getUnusedCandidates(
-    const std::vector<const Question*>& candidates
+    const std::vector<const Question*>&
+    candidates
 ) const
 {
-    std::vector<const Question*> unused;
+    std::vector<const Question*>
+        unused;
 
-    for (const Question* question : candidates)
+    for (
+        const Question* question :
+        candidates
+        )
     {
         if (
             usedQuestions.find(question) ==
             usedQuestions.end()
             )
         {
-            unused.push_back(question);
+            unused.push_back(
+                question
+            );
         }
     }
 
@@ -582,7 +697,8 @@ QuestionManager::getUnusedCandidates(
 
 const Question*
 QuestionManager::chooseRandomFromList(
-    const std::vector<const Question*>& candidates
+    const std::vector<const Question*>&
+    candidates
 )
 {
     if (candidates.empty())
@@ -590,24 +706,32 @@ QuestionManager::chooseRandomFromList(
         return nullptr;
     }
 
-    const std::vector<const Question*> unused =
-        getUnusedCandidates(candidates);
+    const std::vector<const Question*>
+        unused =
+        getUnusedCandidates(
+            candidates
+        );
 
     if (unused.empty())
     {
         return nullptr;
     }
 
-    std::uniform_int_distribution<std::size_t>
-        distribution(
-            0,
-            unused.size() - 1
-        );
+    std::uniform_int_distribution<
+        std::size_t
+    > distribution(
+        0,
+        unused.size() - 1
+    );
 
     const Question* selected =
-        unused[distribution(randomEngine)];
+        unused[
+            distribution(randomEngine)
+        ];
 
-    markQuestionUsed(selected);
+    markQuestionUsed(
+        selected
+    );
 
     return selected;
 }
@@ -620,14 +744,20 @@ QuestionManager::getRandomQuestionWithoutReset()
         return nullptr;
     }
 
-    std::vector<const Question*> candidates;
+    std::vector<const Question*>
+        candidates;
 
-    for (const auto& question : questions)
+    for (const auto& question :
+        questions)
     {
-        candidates.push_back(question.get());
+        candidates.push_back(
+            question.get()
+        );
     }
 
-    return chooseRandomFromList(candidates);
+    return chooseRandomFromList(
+        candidates
+    );
 }
 
 bool
@@ -635,7 +765,8 @@ QuestionManager::allQuestionsUsed() const
 {
     return (
         !questions.empty() &&
-        usedQuestions.size() >= questions.size()
+        usedQuestions.size() >=
+        questions.size()
         );
 }
 
@@ -646,6 +777,8 @@ QuestionManager::markQuestionUsed(
 {
     if (question != nullptr)
     {
-        usedQuestions.insert(question);
+        usedQuestions.insert(
+            question
+        );
     }
 }

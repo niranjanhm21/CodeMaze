@@ -2,6 +2,10 @@
 
 #include <algorithm>
 
+// --------------------------------------------------
+// Constructor
+// --------------------------------------------------
+
 ChallengeUI::ChallengeUI(sf::Font& font)
     : font(font),
     question(nullptr),
@@ -10,6 +14,10 @@ ChallengeUI::ChallengeUI(sf::Font& font)
     hintVisible(false)
 {
 }
+
+// --------------------------------------------------
+// Open
+// --------------------------------------------------
 
 void ChallengeUI::open(
     const Question* newQuestion,
@@ -31,6 +39,10 @@ void ChallengeUI::open(
     hintVisible = false;
 }
 
+// --------------------------------------------------
+// Close
+// --------------------------------------------------
+
 void ChallengeUI::close()
 {
     question = nullptr;
@@ -48,10 +60,18 @@ void ChallengeUI::close()
     hintVisible = false;
 }
 
+// --------------------------------------------------
+// Is Open
+// --------------------------------------------------
+
 bool ChallengeUI::isOpen() const
 {
     return question != nullptr;
 }
+
+// --------------------------------------------------
+// Handle Event
+// --------------------------------------------------
 
 bool ChallengeUI::handleEvent(
     const sf::Event& event,
@@ -65,13 +85,17 @@ bool ChallengeUI::handleEvent(
         return false;
     }
 
-    if (const auto* key =
-        event.getIf<sf::Event::KeyPressed>())
+    if (
+        const auto* key =
+        event.getIf<
+        sf::Event::KeyPressed
+        >()
+        )
     {
-        /*
-         * Backspace is only relevant
-         * for text-based questions.
-         */
+        // --------------------------------------------------
+        // Backspace
+        // --------------------------------------------------
+
         if (
             key->code ==
             sf::Keyboard::Key::Backspace
@@ -88,15 +112,18 @@ bool ChallengeUI::handleEvent(
             return true;
         }
 
-        /*
-         * ENTER submits the current answer.
-         */
+        // --------------------------------------------------
+        // ENTER
+        // --------------------------------------------------
+
         if (
             key->code ==
             sf::Keyboard::Key::Enter
             )
         {
-            if (question->isMultipleChoice())
+            if (
+                question->isMultipleChoice()
+                )
             {
                 if (selectedOption >= 0)
                 {
@@ -114,16 +141,13 @@ bool ChallengeUI::handleEvent(
             return true;
         }
 
-        /*
-         * MCQ selection.
-         *
-         * Keyboard:
-         * 1 / Numpad 1 -> A
-         * 2 / Numpad 2 -> B
-         * 3 / Numpad 3 -> C
-         * 4 / Numpad 4 -> D
-         */
-        if (question->isMultipleChoice())
+        // --------------------------------------------------
+        // MCQ Selection
+        // --------------------------------------------------
+
+        if (
+            question->isMultipleChoice()
+            )
         {
             if (
                 key->code ==
@@ -164,19 +188,17 @@ bool ChallengeUI::handleEvent(
         }
     }
 
-    /*
-     * Preserve support for text questions.
-     *
-     * The current playable question bank uses
-     * MCQs, but keeping this code makes the
-     * Question hierarchy reusable.
-     */
+    // --------------------------------------------------
+    // Text Question Input
+    // --------------------------------------------------
+
     if (!question->isMultipleChoice())
     {
         if (
             const auto* textEntered =
             event.getIf<
-            sf::Event::TextEntered>()
+            sf::Event::TextEntered
+            >()
             )
         {
             char32_t unicode =
@@ -199,30 +221,58 @@ bool ChallengeUI::handleEvent(
     return true;
 }
 
-std::string ChallengeUI::getAnswer() const
+// --------------------------------------------------
+// Get Answer
+// --------------------------------------------------
+
+std::string
+ChallengeUI::getAnswer() const
 {
     if (!question)
     {
         return "";
     }
 
-    if (question->isMultipleChoice())
+    if (
+        question->isMultipleChoice()
+        )
     {
         if (selectedOption < 0)
         {
             return "";
         }
 
-        return std::string(
-            1,
-            static_cast<char>(
-                'A' + selectedOption
+        // IMPORTANT:
+        // Return the actual option text currently
+        // displayed on screen.
+        //
+        // The options have already been shuffled
+        // by MCQQuestion.
+
+        const auto options =
+            question->getOptions();
+
+        if (
+            selectedOption >=
+            static_cast<int>(
+                options.size()
                 )
-        );
+            )
+        {
+            return "";
+        }
+
+        return options[
+            selectedOption
+        ];
     }
 
     return input;
 }
+
+// --------------------------------------------------
+// Clear Input
+// --------------------------------------------------
 
 void ChallengeUI::clearInput()
 {
@@ -231,12 +281,20 @@ void ChallengeUI::clearInput()
     selectedOption = -1;
 }
 
+// --------------------------------------------------
+// Feedback
+// --------------------------------------------------
+
 void ChallengeUI::setFeedback(
     const std::string& newFeedback
 )
 {
     feedback = newFeedback;
 }
+
+// --------------------------------------------------
+// Hint
+// --------------------------------------------------
 
 void ChallengeUI::setHint(
     const std::string& hint
@@ -246,6 +304,10 @@ void ChallengeUI::setHint(
 
     hintVisible = true;
 }
+
+// --------------------------------------------------
+// Time
+// --------------------------------------------------
 
 void ChallengeUI::setTimeRemaining(
     int seconds
@@ -268,24 +330,31 @@ bool ChallengeUI::isHintVisible() const
     return hintVisible;
 }
 
+// --------------------------------------------------
+// Text Wrapping
+// --------------------------------------------------
+
 std::vector<std::string>
 ChallengeUI::wrapText(
     const std::string& text,
     std::size_t maxCharacters
 ) const
 {
-    std::vector<std::string> lines;
+    std::vector<std::string>
+        lines;
 
     std::string currentLine;
 
     std::string currentWord;
 
-    /*
-     * Support explicit line breaks.
-     */
-    std::string textWithSpaces = text;
+    std::string textWithSpaces =
+        text;
 
-    for (char& character : textWithSpaces)
+    // Support explicit line breaks.
+    for (
+        char& character :
+        textWithSpaces
+        )
     {
         if (character == '\n')
         {
@@ -293,7 +362,10 @@ ChallengeUI::wrapText(
         }
     }
 
-    for (char character : textWithSpaces)
+    for (
+        char character :
+    textWithSpaces
+        )
     {
         if (character == ' ')
         {
@@ -372,10 +444,7 @@ ChallengeUI::wrapText(
         );
     }
 
-    /*
-     * Prevent an empty question area when
-     * the source string is empty.
-     */
+    // Prevent an empty question area.
     if (lines.empty())
     {
         lines.push_back("");
@@ -383,6 +452,10 @@ ChallengeUI::wrapText(
 
     return lines;
 }
+
+// --------------------------------------------------
+// Draw Text
+// --------------------------------------------------
 
 void ChallengeUI::drawText(
     sf::RenderWindow& window,
@@ -409,6 +482,10 @@ void ChallengeUI::drawText(
         drawableText
     );
 }
+
+// --------------------------------------------------
+// Draw Panel
+// --------------------------------------------------
 
 void ChallengeUI::drawPanel(
     sf::RenderWindow& window,
@@ -446,6 +523,10 @@ void ChallengeUI::drawPanel(
     );
 }
 
+// --------------------------------------------------
+// Draw Challenge UI
+// --------------------------------------------------
+
 void ChallengeUI::draw(
     sf::RenderWindow& window
 ) const
@@ -455,11 +536,9 @@ void ChallengeUI::draw(
         return;
     }
 
-    /*
-     * ------------------------------------------------
-     * FULL SCREEN OVERLAY
-     * ------------------------------------------------
-     */
+    // --------------------------------------------------
+    // FULL SCREEN OVERLAY
+    // --------------------------------------------------
 
     sf::RectangleShape overlay;
 
@@ -483,11 +562,9 @@ void ChallengeUI::draw(
         overlay
     );
 
-    /*
-     * ------------------------------------------------
-     * MAIN CHALLENGE PANEL
-     * ------------------------------------------------
-     */
+    // --------------------------------------------------
+    // MAIN CHALLENGE PANEL
+    // --------------------------------------------------
 
     drawPanel(
         window,
@@ -512,11 +589,9 @@ void ChallengeUI::draw(
         3.0f
     );
 
-    /*
-     * ------------------------------------------------
-     * HEADER
-     * ------------------------------------------------
-     */
+    // --------------------------------------------------
+    // HEADER
+    // --------------------------------------------------
 
     drawText(
         window,
@@ -550,11 +625,9 @@ void ChallengeUI::draw(
         17
     );
 
-    /*
-     * ------------------------------------------------
-     * TIMER PANEL
-     * ------------------------------------------------
-     */
+    // --------------------------------------------------
+    // TIMER PANEL
+    // --------------------------------------------------
 
     sf::Color timerOutline =
         timeRemaining <= 5
@@ -616,11 +689,9 @@ void ChallengeUI::draw(
         24
     );
 
-    /*
-     * ------------------------------------------------
-     * QUESTION PANEL
-     * ------------------------------------------------
-     */
+    // --------------------------------------------------
+    // QUESTION PANEL
+    // --------------------------------------------------
 
     drawPanel(
         window,
@@ -664,8 +735,10 @@ void ChallengeUI::draw(
     float questionY =
         180.0f;
 
-    for (const auto& line :
-        questionLines)
+    for (
+        const auto& line :
+        questionLines
+        )
     {
         drawText(
             window,
@@ -681,24 +754,17 @@ void ChallengeUI::draw(
             24.0f;
     }
 
-    /*
-     * ------------------------------------------------
-     * MCQ OPTIONS
-     * ------------------------------------------------
-     */
+    // --------------------------------------------------
+    // MCQ OPTIONS
+    // --------------------------------------------------
 
-    if (question->isMultipleChoice())
+    if (
+        question->isMultipleChoice()
+        )
     {
         auto options =
             question->getOptions();
 
-        /*
-         * The project requirement is exactly
-         * four playable MCQ options.
-         *
-         * Drawing is therefore limited to the
-         * first four options.
-         */
         std::size_t optionCount =
             std::min<std::size_t>(
                 4,
@@ -790,12 +856,6 @@ void ChallengeUI::draw(
                     48
                 );
 
-            /*
-             * Options should normally fit on
-             * one line. If a long option occurs,
-             * show its first wrapped line inside
-             * the card.
-             */
             std::string displayOption =
                 optionLines.empty()
                 ? ""
@@ -825,11 +885,9 @@ void ChallengeUI::draw(
             }
         }
 
-        /*
-         * ------------------------------------------------
-         * MCQ INSTRUCTIONS
-         * ------------------------------------------------
-         */
+        // --------------------------------------------------
+        // MCQ Instructions
+        // --------------------------------------------------
 
         drawText(
             window,
@@ -866,11 +924,9 @@ void ChallengeUI::draw(
     }
     else
     {
-        /*
-         * ------------------------------------------------
-         * TEXT QUESTION INPUT
-         * ------------------------------------------------
-         */
+        // --------------------------------------------------
+        // TEXT QUESTION INPUT
+        // --------------------------------------------------
 
         drawPanel(
             window,
@@ -918,11 +974,9 @@ void ChallengeUI::draw(
         );
     }
 
-    /*
-     * ------------------------------------------------
-     * FEEDBACK PANEL
-     * ------------------------------------------------
-     */
+    // --------------------------------------------------
+    // FEEDBACK PANEL
+    // --------------------------------------------------
 
     if (!feedback.empty())
     {
@@ -966,15 +1020,9 @@ void ChallengeUI::draw(
         );
     }
 
-    /*
-     * ------------------------------------------------
-     * HINT PANEL
-     * ------------------------------------------------
-     *
-     * The hint panel is intentionally placed
-     * near the bottom and only appears after
-     * a failed attempt/timeout.
-     */
+    // --------------------------------------------------
+    // HINT PANEL
+    // --------------------------------------------------
 
     if (hintVisible)
     {
@@ -983,13 +1031,13 @@ void ChallengeUI::draw(
             ? 535.0f
             : 575.0f;
 
-        /*
-         * Keep the panel inside the 650px window.
-         */
         float panelHeight =
             50.0f;
 
-        if (hintY + panelHeight > 625.0f)
+        if (
+            hintY + panelHeight >
+            625.0f
+            )
         {
             hintY =
                 575.0f;
