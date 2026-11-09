@@ -1,1312 +1,222 @@
-\# CodeMaze — Adaptive C++ Learning Maze
-
-
-
-CodeMaze is a 2D graphical educational game developed in C++ that combines maze exploration with C++ programming challenges.
-
-
-
-The player navigates through dynamically generated mazes and encounters programming challenges at specific locations. To progress through the maze, the player must answer C++ multiple-choice questions correctly.
-
-
-
-The game also tracks the player's learning performance and uses an adaptive learning mechanism to select suitable topics and difficulty levels based on previous performance.
-
-
-
-\---
-
-
-
-\## 1. Project Overview
-
-
-
-Learning programming through traditional lectures, textbooks, and coding exercises can sometimes become repetitive.
-
-
-
-CodeMaze provides a game-based learning environment where programming practice is combined with exploration and problem solving.
-
-
-
-The player moves through a maze while encountering C++ programming challenges. Each challenge contains a question with four possible answers.
-
-
-
-A correct answer allows the player to continue, while an incorrect answer results in a life penalty and provides feedback and a hint mechanism.
-
-
-
-The system records the player's performance and uses this information to adapt future questions.
-
-
-
-\---
-
-
-
-\## 2. Problem Statement
-
-
-
-Traditional programming learning environments often separate theoretical learning from interactive problem solving.
-
-
-
-Students may understand programming concepts theoretically but still require repeated practice to improve their understanding.
-
-
-
-CodeMaze addresses this by providing an interactive graphical environment where C++ concepts are practiced through a maze-based game.
-
-
-
-The system combines:
-
-
-
-\- Maze exploration
-
-\- C++ programming questions
-
-\- Multiple-choice challenges
-
-\- Time-based challenges
-
-\- Lives and hints
-
-\- Score calculation
-
-\- Performance tracking
-
-\- Adaptive learning
-
-
-
-\---
-
-
-
-\## 3. Objectives
-
-
-
-1\. To develop an interactive C++ programming learning game.
-
-2\. To combine programming education with maze-based gameplay.
-
-3\. To provide C++ programming challenges through MCQs.
-
-4\. To make programming practice more engaging and interactive.
-
-5\. To track the player's performance across different topics.
-
-6\. To adapt question selection according to the player's performance.
-
-7\. To provide feedback based on learning performance.
-
-8\. To encourage repeated practice through levels and progression.
-
-
-
-\---
-
-
-
-\## 4. Key Features
-
-
-
-\- Graphical maze gameplay
-
-\- Dynamic maze generation
-
-\- C++ programming challenges
-
-\- Four-option MCQs
-
-\- Lives system
-
-\- Challenge timer
-
-\- Hint system
-
-\- Scoring system
-
-\- Performance tracking
-
-\- Adaptive learning
-
-\- No-repeat question selection
-
-\- Result dashboard
-
-\- Topic-wise performance
-
-\- Multiple maze levels
-
-\- Replay and level progression
-
-
-
-\---
-
-
-
-\## 5. Game Flow
-
-
-
-The general game flow is:
-
-
+# CodeMaze — Adaptive C++ Learning Maze
+
+CodeMaze is a 2D educational game built with C++ and SFML. Players explore a maze and encounter programming challenges at designated locations. Correct answers allow progression; incorrect answers can cost a life and provide feedback or a hint.
+
+The project combines maze gameplay, C++ practice, performance tracking, and adaptive question selection.
+
+## Project overview
+
+**Problem:** Programming practice can feel disconnected from interactive learning. CodeMaze places C++ questions inside a playable maze so learners practise concepts while progressing through levels.
+
+**Core loop:**
+
+```mermaid
+flowchart TD
+    A[Main menu] --> B[Select level]
+    B --> C[Generate maze]
+    C --> D[Explore maze]
+    D --> E[Reach challenge]
+    E --> F[Answer programming question]
+    F --> G{Answer correct?}
+    G -- Yes --> H[Continue through maze]
+    G -- No --> I[Feedback and life penalty]
+    I --> D
+    H --> J{More challenges or exit?}
+    J -- More --> D
+    J -- Complete --> K[Result screen]
+    K --> L[Replay or next level]
+```
+
+## Features
+
+- 2D maze gameplay and level progression.
+- Configurable maze sizes (10×10, 15×15, 20×20, and 25×25 are described in the project documentation).
+- C++ multiple-choice and other question types represented in the question loader (MCQ, Output, and Debugging).
+- Question topics and difficulty levels.
+- Lives, score, challenge timer, and hints.
+- Performance tracking, including attempts, correct answers, topic performance, hints used, and lives lost.
+- Adaptive topic and difficulty selection based on recorded topic performance.
+- Result screen and learning feedback.
+- Question-history handling to reduce repeated questions within a question cycle.
+
+## Adaptive learning approach
+
+The adaptive engine uses topic-level performance to classify a topic as **Weak**, **Normal**, or **Mastered**, subject to a minimum-attempt requirement. It maps these levels to Easy, Medium, and Hard question difficulty respectively.
+
+The question manager first tries to select a question matching the preferred topic and difficulty. If none is available, it falls back to another question from that topic and then to an unused question. When the current question cycle is exhausted, question history is reset.
+
+The topic-selection logic gives priority to weaker and normal topics while retaining some opportunity to revisit mastered topics. The exact thresholds and selection weights are defined in the source code and may change as the project evolves.
+
+## Architecture
+
+```mermaid
+flowchart TD
+    M[main.cpp] --> G[Game]
+    G --> LM[LevelManager]
+    G --> MG[Maze and MazeGenerator]
+    G --> P[Player]
+    G --> QM[QuestionManager]
+    QM --> AE[AdaptiveEngine]
+    QM --> Q[Question types]
+    AE --> PT[PerformanceTracker]
+    G --> SM[ScoreManager]
+    G --> UI[ChallengeUI and ResultScreen]
+    QM --> DATA[Question data files]
+    G --> ASSETS[Game assets]
+```
+
+### Main modules
+
+| Module | Responsibility |
+|---|---|
+| Game | Main game loop, state transitions, and coordination |
+| LevelManager | Level-specific configuration |
+| Maze / MazeGenerator | Maze structure, generation, and challenge placement |
+| Player | Player position and movement |
+| Questions / QuestionManager | Loading, selecting, and managing questions |
+| Learning / AdaptiveEngine | Topic selection and difficulty adaptation |
+| Learning / PerformanceTracker | Records player performance by topic |
+| Scoring / ScoreManager | Score calculation and reset |
+| UI / ChallengeUI | Displays programming challenges |
+| UI / ResultScreen | Presents end-of-level results |
+
+## Technology stack
+
+| Technology | Purpose |
+|---|---|
+| C++20 | Main programming language |
+| SFML 3.x (project configured for 3.1.0) | Window, graphics, and input |
+| CMake | Build configuration |
+| MSVC / Visual Studio | Windows compiler and development environment |
+| Git and GitHub | Version control and source hosting |
+| Text-based question data | Local question bank |
+
+## Repository layout
 
 ```text
-
-Main Menu
-
-&#x20;   |
-
-&#x20;   +-- Instructions
-
-&#x20;   |
-
-&#x20;   +-- Level Selection
-
-&#x20;            |
-
-&#x20;            v
-
-&#x20;       Start Level
-
-&#x20;            |
-
-&#x20;            v
-
-&#x20;       Generate Maze
-
-&#x20;            |
-
-&#x20;            v
-
-&#x20;      Player Exploration
-
-&#x20;            |
-
-&#x20;            v
-
-&#x20;       Reach Challenge
-
-&#x20;            |
-
-&#x20;            v
-
-&#x20;      Display C++ MCQ
-
-&#x20;            |
-
-&#x20;      +-----+-----+
-
-&#x20;      |           |
-
-&#x20;      v           v
-
-&#x20;   Correct       Wrong
-
-&#x20;      |           |
-
-&#x20;      v           v
-
-&#x20; Continue      Lose Life
-
-&#x20;      |           |
-
-&#x20;      +-----+-----+
-
-&#x20;            |
-
-&#x20;            v
-
-&#x20;     More Challenges?
-
-&#x20;        |       |
-
-&#x20;       Yes      No
-
-&#x20;        |       |
-
-&#x20;        v       v
-
-&#x20;    Continue  Complete
-
-&#x20;               Level
-
-&#x20;                 |
-
-&#x20;                 v
-
-&#x20;            Result Screen
-
-&#x20;                 |
-
-&#x20;            +----+----+
-
-&#x20;            |         |
-
-&#x20;            v         v
-
-&#x20;         Replay   Next Level
-
-
-
-6\. Adaptive Learning System
-
-
-
-One of the main features of CodeMaze is its adaptive learning mechanism.
-
-
-
-The system does not simply select questions randomly. Instead, it examines the player's previous performance for different programming topics.
-
-
-
-The player's performance is used to classify learning areas and determine suitable question difficulty.
-
-
-
-Learning Levels
-
-
-
-The system considers performance using categories such as:
-
-
-
-Weak
-
-Normal
-
-Mastered
-
-Difficulty Adaptation
-
-
-
-Conceptually:
-
-
-
-Weak Topic
-
-&#x20;   |
-
-&#x20;   v
-
-Easy Questions
-
-
-
-Normal Topic
-
-&#x20;   |
-
-&#x20;   v
-
-Medium Questions
-
-
-
-Mastered Topic
-
-&#x20;   |
-
-&#x20;   v
-
-Hard Questions
-
-
-
-This allows the game to provide additional practice in weaker areas while still allowing stronger areas to be challenged.
-
-
-
-7\. Performance Analysis
-
-
-
-CodeMaze maintains a performance tracker during gameplay.
-
-
-
-Important measurements include:
-
-
-
-Attempts
-
-Correct answers
-
-Accuracy
-
-Topic performance
-
-Difficulty performance
-
-Hints used
-
-Lives lost
-
-
-
-Accuracy is calculated conceptually as:
-
-
-
-Accuracy = (Correct Answers / Total Attempts) × 100
-
-
-
-Performance can also be examined separately for individual programming topics.
-
-
-
-8\. Challenge System
-
-
-
-A challenge contains:
-
-
-
-Question
-
-&#x20;   |
-
-&#x20;   v
-
-4 Answer Options
-
-&#x20;   |
-
-&#x20;   v
-
-Player Selection
-
-&#x20;   |
-
-&#x20;   v
-
-Answer Evaluation
-
-&#x20;   |
-
-&#x20;   v
-
-Performance Recording
-
-Correct Answer
-
-
-
-The player successfully completes the challenge, continues the game, receives score benefits according to the scoring system, and has the challenge marked as completed.
-
-
-
-Incorrect Answer
-
-
-
-The player may:
-
-
-
-Lose a life
-
-Receive feedback
-
-Use a hint
-
-Attempt another challenge if lives remain
-
-9\. Question Topics
-
-
-
-The question system supports multiple C++ programming concepts, including:
-
-
-
-C++ Basics
-
-OOP
-
-Pointers
-
-STL
-
-Recursion
-
-Algorithms
-
-Debugging
-
-Other programming concepts included in the question bank
-
-
-
-Questions are categorized by topic and difficulty so that the adaptive learning system can use them effectively.
-
-
-
-10\. Maze System
-
-
-
-The maze system is responsible for creating and managing the playable maze.
-
-
-
-The maze contains:
-
-
-
-Walls
-
-Walkable paths
-
-Player starting position
-
-Exit
-
-Challenge locations
-
-
-
-The project supports configurable maze sizes including:
-
-
-
-10 × 10
-
-15 × 15
-
-20 × 20
-
-25 × 25
-
-
-
-The player size and movement configuration are adjusted according to the maze size.
-
-
-
-11\. Level System
-
-
-
-CodeMaze uses a LevelManager to manage level-specific settings.
-
-
-
-Different levels can have different:
-
-
-
-Maze sizes
-
-Player configurations
-
-Movement settings
-
-Challenge configurations
-
-Time limits
-
-Level names
-
-
-
-The level system allows the game to progressively increase the gameplay challenge.
-
-
-
-12\. User Interface
-
-
-
-The game contains several user interface screens.
-
-
-
-Main Menu
-
-
-
-Provides access to the main game functions.
-
-
-
-Instructions
-
-
-
-Explains the basic game controls and gameplay rules.
-
-
-
-Level Selection
-
-
-
-Allows the player to select a level.
-
-
-
-Gameplay HUD
-
-
-
-Displays important information such as:
-
-
-
-Current level
-
-Score
-
-Lives
-
-Challenge information
-
-Challenge Screen
-
-
-
-Displays:
-
-
-
-Programming question
-
-Four answer options
-
-Timer
-
-Hint
-
-Feedback
-
-Result Screen
-
-
-
-Displays the player's performance after completing a level.
-
-
-
-13\. Project Architecture
-
-
-
-The project follows a modular structure.
-
-
-
 CodeMaze/
+├── CodeMaze/
+│   └── CMakeLists.txt
+├── src/
+│   ├── main.cpp
+│   ├── Game/
+│   ├── Maze/
+│   ├── Player/
+│   ├── Questions/
+│   ├── Learning/
+│   ├── Scoring/
+│   └── UI/
+├── data/
+├── assets/
+├── CMakeLists.txt
+└── README.md
+```
 
-|
+## Requirements
 
-+-- src/
+The current CMake project is configured for Windows and MSVC.
 
-|   +-- main.cpp
+- Windows 10/11 (documented development environment).
+- Visual Studio with the **Desktop development with C++** workload / MSVC toolchain.
+- CMake 3.10 or later (a newer version is recommended).
+- SFML 3.1.0 development package.
+- Git.
 
-|   +-- Game/
+The project uses C++20 and links the SFML Graphics component. Install the SFML package that matches your compiler, architecture, and build configuration.
 
-|   +-- Maze/
+## Build and run (Windows / Visual Studio)
 
-|   +-- Player/
+### 1. Clone the repository
 
-|   +-- Questions/
+```powershell
+git clone https://github.com/niranjanhm21/CodeMaze.git
+cd CodeMaze
+```
 
-|   +-- Learning/
+### 2. Install and locate SFML
 
-|   +-- UI/
+Install the SFML 3.1.0 development package for your MSVC toolchain. Find the directory containing SFML's CMake package configuration (the folder containing `SFMLConfig.cmake`).
 
-|   +-- Scoring/
+For example, if SFML is extracted to `C:\Libraries\SFML-3.1.0`, the package directory may be:
 
-|   +-- Utils/
+```text
+C:\Libraries\SFML-3.1.0\lib\cmake\SFML
+```
 
-|
+Use the actual location on your machine in the next command.
 
-+-- data/
+### 3. Configure with CMake
 
-+-- assets/
+From the repository root:
 
-+-- docs/
+```powershell
+cmake -S . -B build -DSFML_DIR="C:/Libraries/SFML-3.1.0/lib/cmake/SFML"
+```
 
-+-- CMakeLists.txt
+Replace the example path with the directory that contains `SFMLConfig.cmake`.
 
-+-- README.md
+### 4. Build
 
-+-- .gitignore
+```powershell
+cmake --build build --config Release
+```
 
-14\. Major Modules
+### 5. Run
 
-Game Module
+Open the generated solution in the `build/` directory with Visual Studio and run the `CodeMaze` target, or launch the generated `CodeMaze.exe` from its configuration output directory.
 
+The Windows post-build step copies the SFML runtime DLLs (when provided by the package) and the repository's `data/` and `assets/` folders beside the executable.
 
+## Question data format
 
-Controls the main game state and overall gameplay flow.
+The question loader reads pipe-delimited records. The current parser expects at least ten fields:
 
+```text
+type|topic|difficulty|prompt|optionA|optionB|optionC|optionD|answer|hint
+```
 
+The question manager recognizes these type strings:
 
-It manages states such as:
+- `MCQ`
+- `Output`
+- `Debugging`
 
+For MCQ records, the answer field is stored as `A`, `B`, `C`, or `D` and is converted to the original option text before the options are shuffled. Ensure each record follows the expected field order.
 
+## Controls
 
-Main Menu
+The project documentation describes these controls; confirm them against the current build if controls are changed:
 
-Instructions
+| Key | Action |
+|---|---|
+| W / A / S / D or arrow keys | Move |
+| 1–4 | Select an answer |
+| Enter | Submit |
+| H | Request a hint |
+| Esc | Return / exit the current screen |
+| R | Replay / reset where available |
+| N | Continue to the next level where available |
 
-Level Selection
+## Screenshots and demo
 
-Playing
+Capture real screenshots from the running Windows build and add them under `docs/screenshots/`. See [the screenshot capture checklist](docs/SCREENSHOTS.md) for recommended views and filenames.
 
-Challenge
+## Limitations
 
-Won
+- The current project is focused on C++ learning.
+- The question bank is stored locally.
+- The documented implementation is primarily single-player.
+- Online multiplayer and cloud-based learning analytics are not part of the current core project.
+- Adaptive question selection is based on recorded performance and the rules implemented in the local adaptive engine.
 
-Game Over
+## Possible future work
 
-Result
+- Expand the question bank and add more topics.
+- Add automated tests for maze, question selection, and scoring logic.
+- Improve accessibility and input options.
+- Add optional learning-progress export.
+- Evaluate the adaptive learning experience with learners.
 
-Maze Module
+## License
 
-
-
-Responsible for:
-
-
-
-Maze generation
-
-Maze rendering
-
-Collision detection
-
-Start and exit positions
-
-Walkable paths
-
-Challenge placement
-
-Player Module
-
-
-
-Responsible for:
-
-
-
-Player position
-
-Movement
-
-Player size
-
-Collision interaction
-
-Questions Module
-
-
-
-Responsible for:
-
-
-
-Loading questions
-
-Managing the question bank
-
-Selecting questions
-
-Preventing unnecessary question repetition
-
-Handling question information
-
-Learning Module
-
-
-
-Contains the adaptive learning logic.
-
-
-
-It analyzes performance and helps determine:
-
-
-
-Learning level
-
-Topic selection
-
-Question difficulty
-
-UI Module
-
-
-
-Contains the graphical user-interface components.
-
-
-
-Examples include:
-
-
-
-Main menu
-
-Challenge UI
-
-Result screen
-
-Scoring Module
-
-
-
-Handles score-related calculations and performance effects.
-
-
-
-15\. Technology Stack
-
-Technology	Purpose
-
-C++20	Main programming language
-
-SFML 3.1.0	2D graphics, window, input and rendering
-
-CMake	Project configuration and build management
-
-MSVC	C++ compiler
-
-Visual Studio Community	Development environment
-
-Git	Version control
-
-GitHub	Online source-code repository
-
-Text / CSV / JSON	Local data storage where applicable
-
-16\. System Requirements
-
-Hardware
-
-
-
-A modern Windows computer capable of running Visual Studio and SFML-based applications.
-
-
-
-Recommended:
-
-
-
-Multi-core processor
-
-4 GB RAM or more
-
-Sufficient free disk space
-
-Keyboard and mouse
-
-Software
-
-Windows
-
-Visual Studio Community
-
-C++ development tools
-
-CMake
-
-SFML 3.1.0
-
-Git
-
-17\. Development Environment
-
-Operating System : Windows
-
-IDE              : Visual Studio Community
-
-Compiler         : MSVC
-
-Language         : C++20
-
-Graphics Library : SFML 3.1.0
-
-Build System     : CMake
-
-Architecture     : x64
-
-18\. Controls
-
-Key	Action
-
-W / Up Arrow	Move Up
-
-S / Down Arrow	Move Down
-
-A / Left Arrow	Move Left
-
-D / Right Arrow	Move Right
-
-1	Select Answer 1
-
-2	Select Answer 2
-
-3	Select Answer 3
-
-4	Select Answer 4
-
-Enter	Submit Answer
-
-H	Request Hint
-
-Esc	Return / Exit current screen
-
-R	Replay / Reset where applicable
-
-N	Continue to Next Level
-
-19\. Scoring
-
-
-
-The scoring system considers the player's performance during challenges.
-
-
-
-Score can be influenced by:
-
-
-
-Correct answers
-
-Time performance
-
-Hints
-
-Incorrect answers
-
-Other challenge penalties
-
-
-
-The objective is to encourage both accuracy and efficient problem solving.
-
-
-
-20\. Game Over
-
-
-
-The game ends when the player loses all available lives.
-
-
-
-The player can retry the level using the available replay option.
-
-
-
-This creates a balance between learning and gameplay challenge.
-
-
-
-21\. Result and Learning Feedback
-
-
-
-After completing a level, CodeMaze presents a result dashboard.
-
-
-
-The dashboard provides a summary of gameplay and learning performance.
-
-
-
-It includes:
-
-
-
-Level
-
-Score
-
-Accuracy
-
-Correct Answers
-
-Lives Lost
-
-Hints Used
-
-Overall Learning Status
-
-Topic Performance
-
-Learning Insight
-
-
-
-This helps the player understand which programming areas were performed well and which areas may require additional practice.
-
-
-
-22\. Advantages
-
-
-
-CodeMaze provides several advantages:
-
-
-
-Makes programming practice more interactive.
-
-Combines education with game-based learning.
-
-Provides immediate feedback.
-
-Tracks learning performance.
-
-Uses adaptive question selection.
-
-Provides topic-wise performance information.
-
-Encourages repeated practice.
-
-Uses a graphical interface instead of a purely console-based learning system.
-
-Provides multiple levels of gameplay.
-
-23\. Limitations
-
-
-
-The current version has some limitations:
-
-
-
-The question bank is locally stored.
-
-The game currently focuses on C++ programming.
-
-The game is designed primarily for a single player.
-
-Online multiplayer functionality is not included.
-
-Cloud-based learning analytics are not included.
-
-Advanced AI-generated questions are not part of the current core implementation.
-
-24\. Future Enhancements
-
-
-
-Possible future improvements include:
-
-
-
-AI-Based Question Generation
-
-
-
-AI could generate additional programming questions based on the player's learning history.
-
-
-
-More Programming Languages
-
-
-
-The system could be extended to support:
-
-
-
-Python
-
-Java
-
-C
-
-JavaScript
-
-Cloud Database
-
-
-
-Player performance could be stored online to enable long-term learning analytics.
-
-
-
-User Accounts
-
-
-
-Players could have individual profiles and maintain their learning progress.
-
-
-
-Multiplayer Mode
-
-
-
-A multiplayer competitive learning mode could allow multiple students to solve challenges together.
-
-
-
-Advanced Analytics
-
-
-
-Detailed learning dashboards could visualize:
-
-
-
-Topic progress
-
-Accuracy trends
-
-Difficulty trends
-
-Learning improvement over time
-
-More Game Mechanics
-
-
-
-Future versions could include:
-
-
-
-Power-ups
-
-Boss challenges
-
-Multiple maze themes
-
-Achievements
-
-Badges
-
-Leaderboards
-
-25\. Testing
-
-
-
-The project was tested across the major gameplay components.
-
-
-
-Testing included:
-
-
-
-Application startup
-
-Main menu navigation
-
-Instructions screen
-
-Level selection
-
-Maze generation
-
-Player movement
-
-Collision detection
-
-Challenge triggering
-
-MCQ answer selection
-
-Correct answers
-
-Incorrect answers
-
-Lives
-
-Timer
-
-Hints
-
-Scoring
-
-Adaptive question selection
-
-Level completion
-
-Result screen
-
-Replay
-
-Level progression
-
-Final level completion
-
-
-
-The complete gameplay flow was tested successfully.
-
-
-
-26\. Project Status
-
-
-
-Current Status: Completed Core Implementation
-
-
-
-The implemented version contains the complete core gameplay and adaptive-learning functionality required for the project.
-
-
-
-Core Game                 ✅
-
-Dynamic Maze              ✅
-
-C++ Challenges            ✅
-
-MCQ System                ✅
-
-Timer                     ✅
-
-Lives                     ✅
-
-Hints                     ✅
-
-Scoring                   ✅
-
-Performance Tracking      ✅
-
-Adaptive Learning         ✅
-
-Multiple Levels           ✅
-
-Result Dashboard          ✅
-
-Gameplay Testing          ✅
-
-Git Version Control       ✅
-
-GitHub Repository         ✅
-
-27\. Git and Version Control
-
-
-
-Git is used to maintain the project's development history.
-
-
-
-The source code is maintained in a Git repository and the repository is hosted online using GitHub.
-
-
-
-This provides:
-
-
-
-Version history
-
-Project backup
-
-Change tracking
-
-Recovery of previous versions
-
-Online project storage
-
-
-
-GitHub Repository:
-
-
-
-CodeMaze — Adaptive C++ Learning Maze
-
-
-
-28\. Conclusion
-
-
-
-CodeMaze demonstrates how programming education can be combined with interactive game mechanics.
-
-
-
-By integrating maze exploration, C++ programming challenges, lives, hints, timers, scoring, performance tracking, and adaptive learning, the project provides an interactive environment for practicing programming concepts.
-
-
-
-The adaptive component allows the system to consider the player's previous performance when selecting future learning challenges.
-
-
-
-The project also demonstrates the application of important software development concepts including:
-
-
-
-Object-Oriented Programming
-
-Data structures
-
-Algorithms
-
-File-based data management
-
-Graphical user interfaces
-
-Event handling
-
-Performance analysis
-
-Modular software architecture
-
-Version control
-
-29\. Author
-
-
-
-MCA Project
-
-
-
-Project Name: CodeMaze — Adaptive C++ Learning Maze
-
-
-
-Domain: Educational Game / Programming Learning
-
-
-
-Primary Language: C++
-
-
-
-Graphics Framework: SFML 3.1.0
-
-
-
-Build System: CMake
-
-
-
-Version Control: Git / GitHub
-
+No license file was identified during this documentation review. Unless a license is added to the repository, reuse and redistribution permissions are not explicitly granted.
