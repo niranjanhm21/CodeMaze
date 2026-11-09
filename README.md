@@ -197,9 +197,26 @@ The project documentation describes these controls; confirm them against the cur
 | R | Replay / reset where available |
 | N | Continue to the next level where available |
 
-## Screenshots and demo
+## Screenshots and Demo
 
-Capture real screenshots from the running Windows build and add them under `docs/screenshots/`. See [the screenshot capture checklist](docs/SCREENSHOTS.md) for recommended views and filenames.
+The following screenshots show the CodeMaze game interface and its learning features.
+
+### Main Menu
+![Main Menu](docs/screenshots/Main%20Menu.png)
+
+### Level Selection
+![Level Selection](docs/screenshots/Level%20Selection.png)
+
+### Maze Gameplay
+![Maze Gameplay](docs/screenshots/Maze%20Gameplay.png)
+
+### Adaptive Learning Performance
+![Adaptive Learning Performance](docs/screenshots/Adaptive%20Learning%20%20Performance.png)
+
+### Additional Game Screen
+![Additional Game Screen](docs/screenshots/Screenshot%202026-11-09%20123521.png)
+
+For screenshot capture details, see [docs/SCREENSHOTS.md](docs/SCREENSHOTS.md).
 
 ## Limitations
 
