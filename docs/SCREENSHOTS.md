@@ -97,4 +97,4 @@ Example:
 
 ---
 
-**Status:** Screenshot documentation prepared. Actual gameplay screenshots will be added after capturing them from the running game.
+**Status:** Actual gameplay screenshots have been captured and added to the repository. The README displays selected screenshots from the running game.
