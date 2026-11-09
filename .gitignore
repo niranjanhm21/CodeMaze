@@ -27,3 +27,13 @@ cmake_install.cmake
 # Operating system files
 .DS_Store
 Thumbs.db
+# Environment and secret files
+.env
+.env.*
+!.env.example
+
+# Private keys and certificates
+*.pem
+*.key
+*.p12
+*.pfx
